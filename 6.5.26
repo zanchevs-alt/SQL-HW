@@ -1,0 +1,28 @@
+-- Tables for combinations
+CREATE TABLE Pastries (PastryName VARCHAR(50));
+CREATE TABLE Toppings (ToppingName VARCHAR(50));
+
+INSERT INTO Pastries VALUES ('Croissant'), ('Muffin'), ('Donut');
+INSERT INTO Toppings VALUES ('Chocolate'), ('Glaze'), ('Sprinkles'), ('Caramel');
+
+
+SELECT * FROM Pastries CROSS JOIN Toppings;
+SELECT COUNT(*) FROM Pastries CROSS JOIN Toppings;
+
+-- Tables for business logic
+CREATE TABLE Baristas (Name VARCHAR(50), HourlyRate DECIMAL(10,2));
+CREATE TABLE Shifts (ShiftType VARCHAR(20), Income DECIMAL(10,2));
+
+INSERT INTO Baristas VALUES ('Alice', 18.00), ('Bob', 22.00), ('Charlie', 15.00), ('Diana', 25.00);
+INSERT INTO Shifts VALUES ('Morning', 95.00), ('Afternoon', 85.00), ('Evening', 70.00);
+
+SELECT b.Name
+FROM Baristas B
+WHERE HourlyRate > 20.00;
+
+SELECT * FROM Pastries INNER JOIN Toppings;
+SELECT COUNT(*) FROM Pastries INNER JOIN Toppings;
+
+SELECT s.ShiftType
+FROM Shifts s
+WHERE (SELECT SUM(HourlyRate) FROM Baristas) < s.income;
