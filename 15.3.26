@@ -1,0 +1,21 @@
+
+
+CREATE TABLE contacts (
+    id       INT        OUTOINCREMENT,
+    full_name TEXT
+);
+
+CREATE TABLE contact_emails (
+    id         INT          PRIMARY KEY,
+    contact_id TEXT  NOT NULL
+    email      TEXT NOT NULL,
+	UNIQUE (CONTACT_ןID, TAG)
+    FOREIGN KEY (contact_id) REFERENCES contacts(id)
+);
+
+CREATE TABLE contact_tags (
+    id         INT          PRIMARY KEY,
+    contact_id INT          NOT NULL,
+    tag        NOT NULL,
+    FOREIGN KEY (contact_id) REFERENCES contacts(id)
+);
